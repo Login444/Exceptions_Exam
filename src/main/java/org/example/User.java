@@ -1,14 +1,17 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class User {
     public String lastName;
     public String name;
     public String surname;
-    public String dateOfBirth;
+    public LocalDate dateOfBirth;
     public Long phoneNumber;
     public Character sex;
 
-    public User(String lastName, String name, String surname, String dateOfBirth, Long phoneNumber, Character sex) {
+    public User(String lastName, String name, String surname, LocalDate dateOfBirth, Long phoneNumber, Character sex) {
         this.lastName = lastName;
         this.name = name;
         this.surname = surname;
@@ -44,11 +47,11 @@ public class User {
         this.surname = surname;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

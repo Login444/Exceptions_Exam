@@ -4,8 +4,8 @@ package org.example;
 
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Application {
@@ -54,19 +54,16 @@ public class Application {
         user.setSex(checkSex(stringArray[5]));
         return user;
     }
-    // TODO: 30.07.2023  разберись с датой, либо меняй формат либо переписывыай метод.
 
-    public String checkDate(String date){
+    public LocalDate checkDate(String date){
         try{
-            DateTimeFormatter dateOfBirth = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.of(date));
-            String birthday = dateOfBirth.toString();
-            return birthday;
+            LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            return localDate;
         } catch(DateTimeException e){
             System.out.println("Неверный формат даты, введите заново: ");
             String newDate = stringInput.nextLine();
-            DateTimeFormatter dateOfBirth = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.of(newDate));
-            String birthday = dateOfBirth.toString();
-            return birthday;
+            LocalDate localDate = LocalDate.parse(newDate, DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            return localDate;
         }
     }
 
@@ -80,14 +77,12 @@ public class Application {
             return validNumber;
         }
     }
+    // TODO: 30.07.2023 результат выполнения проверки charAt(0), придумать как реализовать саму проверку
 
     public Character checkSex(String sex){
         try {
-            Character sexChar = null;
-            if ((sex == "f" || sex == "m") && sex.length() == 1) {
-                sexChar = sex.charAt(0);
-            }
-                return sexChar;
+            Character sexChar = sex.charAt(0);
+            return sexChar;
         } catch (RuntimeException e){
             System.out.println("Неверно указан пол, введите еще раз: ");
             String newChar = stringInput.nextLine();
@@ -95,6 +90,4 @@ public class Application {
             return validSexChar;
         }
     }
-
-
 }
