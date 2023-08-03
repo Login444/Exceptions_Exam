@@ -33,7 +33,8 @@ public class Application {
         }
         String[] stringArray = dataString.split("\s");
         User user = dataStringTransform(stringArray);
-        System.out.println(user);
+
+
     }
 
     public int checkDataStringSize(String dataString){
@@ -77,7 +78,7 @@ public class Application {
             return validNumber;
         }
     }
-    // TODO: 02.08.2023 результат выполнения проверки charAt(0), придумать как реализовать саму проверку
+
 
     public Character checkSex(String sex){
         if (sex.length() == 1 && (sex.equalsIgnoreCase("f") || sex.equalsIgnoreCase("m"))){
@@ -88,4 +89,7 @@ public class Application {
            return checkSex(sex);
         }
     }
+
+    //todo должен создаться файл с названием, равным фамилии, в него в одну строку должны записаться полученные данные
+    //todo Однофамильцы должны записаться в один и тот же файл, в отдельные строки.
 }
