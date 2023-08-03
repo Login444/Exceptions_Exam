@@ -77,17 +77,15 @@ public class Application {
             return validNumber;
         }
     }
-    // TODO: 30.07.2023 результат выполнения проверки charAt(0), придумать как реализовать саму проверку
+    // TODO: 02.08.2023 результат выполнения проверки charAt(0), придумать как реализовать саму проверку
 
     public Character checkSex(String sex){
-        try {
-            Character sexChar = sex.charAt(0);
-            return sexChar;
-        } catch (RuntimeException e){
-            System.out.println("Неверно указан пол, введите еще раз: ");
-            String newChar = stringInput.nextLine();
-            Character validSexChar = newChar.charAt(0);
-            return validSexChar;
+        if (sex.length() == 1 && (sex.equalsIgnoreCase("f") || sex.equalsIgnoreCase("m"))){
+            return sex.charAt(0);
+        } else {
+            System.out.println("Неверно введен пол, попробуйте еще раз: ");
+            sex = stringInput.nextLine();
+           return checkSex(sex);
         }
     }
 }
