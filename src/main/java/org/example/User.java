@@ -1,5 +1,10 @@
 package org.example;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -69,6 +74,18 @@ public class User {
 
     public void setSex(Character sex) {
         this.sex = sex;
+    }
+
+    public void intoFile(){
+        String fileName = this.lastName + ".txt";
+        File file = new File(fileName);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            writer.write(toString() + "\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     @Override

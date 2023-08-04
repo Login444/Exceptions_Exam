@@ -3,6 +3,10 @@ package org.example;
 
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,6 +37,7 @@ public class Application {
         }
         String[] stringArray = dataString.split("\s");
         User user = dataStringTransform(stringArray);
+        intoFile(user);
 
 
     }
@@ -90,6 +95,17 @@ public class Application {
         }
     }
 
-    //todo должен создаться файл с названием, равным фамилии, в него в одну строку должны записаться полученные данные
-    //todo Однофамильцы должны записаться в один и тот же файл, в отдельные строки.
+    public void intoFile(User user){
+        String fileName = user.getLastName() + ".txt";
+        File file = new File(fileName);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            if (!file.exists()) file.createNewFile();
+            writer.write(user.toString() + "\n");
+            System.out.println("Запись данных в файл выполнена");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
 }
